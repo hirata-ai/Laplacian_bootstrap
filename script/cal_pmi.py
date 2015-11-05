@@ -57,13 +57,13 @@ def cal_pmi(pattern_file, instance_file, pat_ins_file):
         if count < 10:
             continue
 
-        pmi = math.log(count/(float(instance_dic[instance])*float(pattern_dic[pattern])), 2)
+        pmi = math.log((float(instance_dic[instance])*float(pattern_dic[pattern])/count), 2)
         pattern_ins_dic[pattern][instance] = pmi
         # print pmi
         # M[instance_index[instance], pattern_index[pattern]] = pmi
         if max_pmi == None:
             max_pmi = pmi
-        elif max_pmi > pmi:
+        elif max_pmi < pmi:
             max_pmi = pmi
     print "pattern_instance readed."
 
@@ -104,6 +104,6 @@ if __name__ == "__main__":
     # instance_file = "/work/hirata/wiki_2015/test/test_noun_count.txt"
     # pat_ins_file  = "/work/hirata/wiki_2015/test/test_5gram.txt"
     pattern_file  = "/work/hirata/wiki_2015/wiki_pattern_count.txt"
-    instance_file = "/work/hirata/wiki_2015/wiki_mecab_count.txt"
+    instance_file = "/work/hirata/wiki_2015/wiki_noun_count.txt"
     pat_ins_file  = "/work/hirata/wiki_2015/wiki_5gram_count.txt"
     cal_pmi(pattern_file, instance_file, pat_ins_file)
